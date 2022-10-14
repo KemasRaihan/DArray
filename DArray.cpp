@@ -31,24 +31,43 @@ void DArray::addItem(float item)
 
 void DArray::removeItem(int index)
 {
-	try{
-		if (index < 0 || index >= numberOfItems)
+	if (!indexIsOutOfBounds(index))
+	{
+		for (int i = index; i < numberOfItems; i++)
+		{
+			data[i] = data[i + 1];
+		}
+		numberOfItems--;
+	}
+}
+
+float DArray::getItem(int index)
+{
+	if (!indexIsOutOfBounds(index))
+	{
+		return data[index];
+	}
+	return NULL;
+}
+
+bool DArray::indexIsOutOfBounds(int index)
+{
+	try {
+		if (index < 0 || index >= numberOfItems) // check index out of bounds exception
 		{
 			throw index;
 		}
-		else 
+		else
 		{
-			for (int i = index; i < numberOfItems; i++)
-			{
-				data[i] = data[i + 1];
-			}
-			numberOfItems--;
+			return false;
 		}
 	}
 	catch (int index)
 	{
 		cout << "Index " << index << " is out of bounds";
+		return true;
 	}
+
 }
 
 void DArray::display()
@@ -134,13 +153,17 @@ int main()
 	d1->addItem(8.0f);
 	d1->addItem(7.0f);
 	d1->addItem(2.5f);
+	// change
 
 	cout << "\nd1 before removal : ";
 	d1->display();
 
-	d1->removeItem(4);
+	d1->removeItem(3);
 	cout << "\nd1 after removal : ";
 	d1->display();
+
+	float item = d1->getItem(0);
+	cout << item;
 
 	//DArray* d2 = new DArray();
 	//d2->addItem(-1.0f);
@@ -156,8 +179,8 @@ int main()
 	//cout << "\nd3 = d1 + d2 : ";
 	//d3->display();
 
-	float md1 = d1->calculateMagnitude();
-	cout << "\nThe magnitude of d1 is " << md1 << "\n";
+	//float md1 = d1->calculateMagnitude();
+	//cout << "\nThe magnitude of d1 is " << md1 << "\n";
 
 	//float dd12 = d1->dotProduct(d2);
 	//cout << "\nThe dot product of d1 and d2 is " << dd12 << "\n";

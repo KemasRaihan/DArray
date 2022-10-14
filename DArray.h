@@ -15,6 +15,8 @@ public:
 	~DArray();
 	void addItem(float item);
 	void removeItem(int index);
+	float getItem(int index);
+	bool indexIsOutOfBounds(int index);
 	void display();
 	DArray* add(DArray* rhs);
 	float calculateMagnitude();
