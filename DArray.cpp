@@ -162,8 +162,8 @@ int main()
 	cout << "\nd1 after removal : ";
 	d1->display();
 
-	float item = d1->getItem(0);
-	cout << item;
+	//float item = d1->getItem(0);
+	//cout << item;
 
 	//DArray* d2 = new DArray();
 	//d2->addItem(-1.0f);
