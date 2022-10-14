@@ -153,7 +153,6 @@ int main()
 	d1->addItem(8.0f);
 	d1->addItem(7.0f);
 	d1->addItem(2.5f);
-	// change
 
 	cout << "\nd1 before removal : ";
 	d1->display();
@@ -161,41 +160,9 @@ int main()
 	d1->removeItem(3);
 	cout << "\nd1 after removal : ";
 	d1->display();
-
-	//float item = d1->getItem(0);
-	//cout << item;
-
-	//DArray* d2 = new DArray();
-	//d2->addItem(-1.0f);
-	//d2->addItem(15.0f);
-	//d2->addItem(-7.0f);
-	//d2->addItem(0.0f);
-
-	//cout << "\nd2 : ";
-	//d2->display();
-
-	//DArray* d3 = d1->add(d2);
-
-	//cout << "\nd3 = d1 + d2 : ";
-	//d3->display();
-
-	//float md1 = d1->calculateMagnitude();
-	//cout << "\nThe magnitude of d1 is " << md1 << "\n";
-
-	//float dd12 = d1->dotProduct(d2);
-	//cout << "\nThe dot product of d1 and d2 is " << dd12 << "\n";
-
-
-
 	
 	delete d1;
 	d1 = nullptr;
-
-	//delete d2;
-	//d2 = nullptr;
-
-	//delete d3;
-	//d3 = nullptr;
 
 	return 0;
 }
