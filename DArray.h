@@ -6,7 +6,7 @@ using namespace std;
 class DArray
 {
 private:
-	int numberOfItems, maxcap;
+	int numberOfItems, size, maxcap;
 	float* data;
 	float magnitude;
 

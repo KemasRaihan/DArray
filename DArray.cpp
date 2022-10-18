@@ -7,8 +7,9 @@ using namespace std;
 DArray::DArray()
 {
 	numberOfItems = 0;
+	size = 1;
 	maxcap = 10;
-	data = (float*)malloc(sizeof(float) * maxcap);
+	data = (float*)malloc(sizeof(float) * size);
 }
 
 
@@ -20,18 +21,23 @@ DArray::~DArray()
 void DArray::addItem(float item)
 {
 	/*grow array*/
-	if (numberOfItems == maxcap)
+	if (numberOfItems < maxcap)
 	{
-		maxcap *= 4;
-		data = (float*)realloc(data, sizeof(float) * maxcap);
+		size *= 2;
+		data = (float*)realloc(data, sizeof(float) * size);
+		data[numberOfItems++] = item; // add item to the array 
+	}
+	else
+	{
+		cout << "\nVector has reached max capacity.\n";
 	}
 
-	data[numberOfItems++] = item; // add item to the array 
+	
 }
 
 void DArray::removeItem(int index)
 {
-	if (!indexIsOutOfBounds(index))
+	if (index >= 0 && index < maxcap)
 	{
 		for (int i = index; i < numberOfItems; i++)
 		{
@@ -43,32 +49,13 @@ void DArray::removeItem(int index)
 
 float DArray::getItem(int index)
 {
-	if (!indexIsOutOfBounds(index))
+	if (index >= 0 && index < maxcap)
 	{
 		return data[index];
 	}
 	return NULL;
 }
 
-bool DArray::indexIsOutOfBounds(int index)
-{
-	try {
-		if (index < 0 || index >= numberOfItems) // check index out of bounds exception
-		{
-			throw index;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	catch (int index)
-	{
-		cout << "Index " << index << " is out of bounds";
-		return true;
-	}
-
-}
 
 void DArray::display()
 {
